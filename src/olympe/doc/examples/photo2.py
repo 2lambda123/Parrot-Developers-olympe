@@ -5,7 +5,7 @@ import olympe
 import os
 import re
 import tempfile
-import xml.etree.ElementTree as ET
+import defusedxml.ElementTree
 
 
 olympe.log.update_config({
@@ -83,7 +83,7 @@ def take_photo_burst(drone):
                     f"Failed to find XMP photo metadata {resource.resource_id}"
                 )
                 continue
-            image_xmp = ET.fromstring(image_data[image_xmp_start: image_xmp_end + 12])
+            image_xmp = defusedxml.ElementTree.fromstring(image_data[image_xmp_start: image_xmp_end + 12])
             for image_meta in image_xmp[0][0]:
                 xmp_tag = re.sub(r"{[^}]*}", "", image_meta.tag)
                 xmp_value = image_meta.text
