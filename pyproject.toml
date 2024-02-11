@@ -53,7 +53,8 @@ dependencies = [
     "requests",
     "six",
     "tzlocal<4.0",
-    "wsproto"
+    "wsproto",
+    "defusedxml~=0.7.1"
 ]
 
 [project.optional-dependencies]
